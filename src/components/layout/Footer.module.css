@@ -1,0 +1,32 @@
+.footer {
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    background-color: #304ffe;
+    color: #fff;
+    list-style: none;
+}
+.footer ul{
+    display: flex;
+    width: 100%;
+    position: relative;
+    list-style: none;
+    text-align: center;
+    z-index: 1;
+
+}
+
+.footer li{
+    margin: auto;
+    text-transform: capitalize;
+    line-height: 1;
+}
+.footer li:hover{
+color: black;
+}
+
+.footer span {
+    display: block;
+}
