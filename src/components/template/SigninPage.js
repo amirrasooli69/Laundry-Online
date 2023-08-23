@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ThreeDots } from "react-loader-spinner";
+import { signIn } from "next-auth/react";
 
 function SigninPage() {
   const [email, setEmail] = useState("");
@@ -15,30 +16,29 @@ function SigninPage() {
 
   const router = useRouter();
 
-  const signupHandler = async (e) => {
+  const signinHandler = async (e) => {
     e.preventDefault();
 
     setloading(true);
-    const res = await fetch("/api/auth/signup", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
+    const res = await signIn("credentials",{
+      email,
+      password,
+      redirect:false
     });
-    const data = await res.json();
-    setloading(false);
 
-    if (data.status === 201) {
-      toast.success(data.message);
-      router.push("/signin");
+    setloading(false);
+    if (res.error) {
+      toast.error(res.error);
     } else {
-      toast.error(data.error);
+      toast.success(res.message);
+      router.push("/");
     }
   };
   return (
     <div className={styles.form}>
       <h4> ورود:</h4>
       <form>
-    {/* <Image src={singup_pic} width={200} height={200} alt="person" /> */}
+        {/* <Image src={singup_pic} width={200} height={200} alt="person" /> */}
 
         <label>ایمیل:</label>
         <input
@@ -61,7 +61,7 @@ function SigninPage() {
             wrapperStyle={{ margin: "auto" }}
           />
         ) : (
-          <button type="submit" onClick={signupHandler}>
+          <button type="submit" onClick={signinHandler}>
             ورود
           </button>
         )}
