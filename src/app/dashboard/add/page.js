@@ -1,9 +1,8 @@
-import React from 'react';
+import AddProfilePage from "@/template/AddProfilePage";
+
 
 function AddProfile() {
-    return (
-        <div>profile</div>
-    );
+    return <AddProfilePage />
 }
 
 export default AddProfile;
