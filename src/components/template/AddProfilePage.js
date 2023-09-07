@@ -1,3 +1,4 @@
+"use client"
 import styles from "@/template/AddProfilePage.module.css";
 import { useState } from "react";
 
