@@ -1,4 +1,5 @@
 "use client";
+import CustomDatePicker from "@/module/CustomDatePicker";
 import RadioList from "@/module/RadioList";
 import TextInput from "@/module/TextInput";
 import TextList from "@/module/TextList";
@@ -19,9 +20,9 @@ function AddProfilePage() {
     amenities: [],
   });
 
-  const submitHandler = ()=> {
-    console.log(profileData)
-  }
+  const submitHandler = () => {
+    console.log(profileData);
+  };
   return (
     <div>
       <h3>ثبت آگهی</h3>
@@ -73,15 +74,31 @@ function AddProfilePage() {
         textarea={false}
       />
       <RadioList profileData={profileData} setProfileData={setProfileData} />
-      <TextList title="امکانات رفاهی" profileData={profileData} setProfileData={setProfileData} type="amenities"/>
-      <TextList title="قوانین" profileData={profileData} setProfileData={setProfileData} type="rules"/>
+      <TextList
+        title="امکانات رفاهی"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        type="amenities"
+      />
+      <TextList
+        title="قوانین"
+        profileData={profileData}
+        setProfileData={setProfileData}
+        type="rules"
+      />
 
-      <button className={styles.submit} onClick={submitHandler}>ثبت آگهی</button>
+      <CustomDatePicker
+        profileData={profileData}
+        setProfileData={setProfileData}
+        // calendarPosition="bottom-right"
+      />
+      <button className={styles.submit} onClick={submitHandler}>
+        ثبت آگهی
+      </button>
       <h3>------------------</h3>
       <h3>------------------</h3>
 
       <h3>------------------</h3>
-
     </div>
   );
 }
