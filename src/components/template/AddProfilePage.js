@@ -1,5 +1,7 @@
 "use client";
+import RadioList from "@/module/RadioList";
 import TextInput from "@/module/TextInput";
+import TextList from "@/module/TextList";
 import styles from "@/template/AddProfilePage.module.css";
 import { useState } from "react";
 
@@ -70,6 +72,9 @@ function AddProfilePage() {
         setProfiledata={setProfileData}
         textarea={false}
       />
+      <RadioList profileData={profileData} setProfileData={setProfileData} />
+      <TextList title="امکانات رفاهی" profileData={profileData} setProfileData={setProfileData} type="amenities"/>
+      <TextList title="قوانین" profileData={profileData} setProfileData={setProfileData} type="rules"/>
 
       <button className={styles.submit} onClick={submitHandler}>ثبت آگهی</button>
       <h3>------------------</h3>
