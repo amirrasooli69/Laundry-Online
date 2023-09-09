@@ -20,8 +20,19 @@ function AddProfilePage() {
     amenities: [],
   });
 
-  const submitHandler = () => {
-    console.log(profileData);
+  const submitHandler = async () => {
+    // console.log(profileData);
+    const res = await fetch("/api/profile",{
+      method: "POST",
+      body: JSON.stringify(profileData),
+      headers: {"Content-type": "application/json"}
+    });
+    // const data = await res.json();
+    // if(data.error){
+    //   console.log(data);
+    // } else {
+    //   console.log("success: " , data);
+    // }
   };
   return (
     <div>
