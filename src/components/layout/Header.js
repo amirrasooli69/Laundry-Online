@@ -6,7 +6,7 @@ import styles from "@/layout/Header.module.css";
 import { useSession } from "next-auth/react";
 function Header() {
   const { data } = useSession();
-  console.log(data);
+  // console.log(data);
   return (
     <header className={styles.header}>
       <div>

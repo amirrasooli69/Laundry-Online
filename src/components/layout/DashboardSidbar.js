@@ -7,7 +7,7 @@ import SignoutButton from "@/module/SignoutButton";
 
 async function DashboardSidbar({ children }) {
   const session = await getServerSession(authOptions);
-  console.log(session);
+  // console.log(session);
   return (
     <div className={styles.container}>
       <div className={styles.sidebar}>

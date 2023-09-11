@@ -53,7 +53,6 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-console.log(user);
     const newProfile = await Profile.create({
       title,
       description,
