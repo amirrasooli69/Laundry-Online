@@ -31,7 +31,7 @@ export async function POST(req) {
     }
 
     const user = await User.find({ email: sesstion.user.email });
-    console.log(user);
+    // console.log(user);
     if (!user) {
       return NextResponse.json(
         { error: "حساب کاربری یافت نشد" },
@@ -53,7 +53,7 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-
+console.log(user);
     const newProfile = await Profile.create({
       title,
       description,
@@ -67,7 +67,7 @@ export async function POST(req) {
       price: +price,
       userId: new Types.ObjectId(user._id),
     });
-    console.log(newProfile);
+    // console.log(newProfile);
     return NextResponse.json({ message: "آگهی ثبت شد" }, { status: 201 });
   } catch (err) {
     console.log(err);

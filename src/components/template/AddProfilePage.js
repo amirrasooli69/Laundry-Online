@@ -5,6 +5,7 @@ import TextInput from "@/module/TextInput";
 import TextList from "@/module/TextList";
 import styles from "@/template/AddProfilePage.module.css";
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 function AddProfilePage() {
   const [profileData, setProfileData] = useState({
@@ -27,12 +28,12 @@ function AddProfilePage() {
       body: JSON.stringify(profileData),
       headers: {"Content-type": "application/json"}
     });
-    // const data = await res.json();
-    // if(data.error){
-    //   console.log(data);
-    // } else {
-    //   console.log("success: " , data);
-    // }
+    const data = await res.json();
+    if(data.error){
+      toast.error(data.error)
+    } else {
+      toast.success(data.message);
+    }
   };
   return (
     <div>
@@ -106,6 +107,7 @@ function AddProfilePage() {
       <button className={styles.submit} onClick={submitHandler}>
         ثبت آگهی
       </button>
+      <Toaster />
       <h3>------------------</h3>
       <h3>------------------</h3>
 

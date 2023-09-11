@@ -16,13 +16,11 @@ export async function POST(req) {
       );
     }
 
-    // console.log("existing user and password")
 
     const existingUser = await User.findOne({ email });
     if(existingUser) {
         return NextResponse.json({status:422 , error:"این حساب کاربری وجود دارد"})
     }
-    // console.log("No existing user")
 
     const hashedPassword = await hashPassword(password);
     const newUser = await User.create({
@@ -30,9 +28,8 @@ export async function POST(req) {
         password: hashedPassword
     });
 
-    // console.log("hashed passwrod")
 
-    console.log(newUser);
+    // console.log(newUser);
     return NextResponse.json({status:201 , message:"حساب کاربری ایجاد شد"})
   } catch (err) {
     console.log(err);
