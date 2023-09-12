@@ -4,7 +4,7 @@ const profileSchema = new Schema(
   {
     title: {
       type: String,
-      require: true,
+      required: true,
     },
     description: {
       type: String,
@@ -52,4 +52,5 @@ const profileSchema = new Schema(
 );
 
 const Profile = models.Profile || model("Profile", profileSchema);
+
 export default Profile;

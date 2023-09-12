@@ -6,8 +6,10 @@ import TextList from "@/module/TextList";
 import styles from "@/template/AddProfilePage.module.css";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import Loader from "@/module/Loader";
 
 function AddProfilePage() {
+  const [loading, setLoading] = useState(false);
   const [profileData, setProfileData] = useState({
     title: "",
     description: "",
@@ -23,14 +25,16 @@ function AddProfilePage() {
 
   const submitHandler = async () => {
     // console.log(profileData);
-    const res = await fetch("/api/profile",{
+    setLoading(true);
+    const res = await fetch("/api/profile", {
       method: "POST",
       body: JSON.stringify(profileData),
-      headers: {"Content-type": "application/json"}
+      headers: { "Content-type": "application/json" },
     });
     const data = await res.json();
-    if(data.error){
-      toast.error(data.error)
+    setLoading(false);
+    if (data.error) {
+      toast.error(data.error);
     } else {
       toast.success(data.message);
     }
@@ -104,9 +108,13 @@ function AddProfilePage() {
         setProfileData={setProfileData}
         // calendarPosition="bottom-right"
       />
-      <button className={styles.submit} onClick={submitHandler}>
-        ثبت آگهی
-      </button>
+      {loading ? (
+        <Loader />
+      ) : (
+        <button className={styles.submit} onClick={submitHandler}>
+          ثبت آگهی
+        </button>
+      )}
       <Toaster />
       <h3>------------------</h3>
       <h3>------------------</h3>

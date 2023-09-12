@@ -6,8 +6,8 @@ import { useState } from "react";
 // import singup_pic from "@/image/signup.jpg";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ThreeDots } from "react-loader-spinner";
 import { signIn } from "next-auth/react";
+import Loader from "@/module/Loader";
 
 function SigninPage() {
   const [email, setEmail] = useState("");
@@ -53,13 +53,7 @@ function SigninPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
         {loading ? (
-          <ThreeDots
-            color="#304ffe"
-            height={45}
-            ariaLabel="three-dots-loading"
-            visible={true}
-            wrapperStyle={{ margin: "auto" }}
-          />
+          <Loader />
         ) : (
           <button type="submit" onClick={signinHandler}>
             ورود
