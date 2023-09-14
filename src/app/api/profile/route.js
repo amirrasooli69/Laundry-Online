@@ -30,8 +30,8 @@ export async function POST(req) {
       );
     }
 
-    const user = await User.find({ email: sesstion.user.email });
-    console.log(user);
+    const [user] = await User.find({ email: sesstion.user.email });
+    console.log(user._id);
     if (!user) {
       return NextResponse.json(
         { error: "حساب کاربری یافت نشد" },
@@ -64,7 +64,6 @@ export async function POST(req) {
       rules,
       amenities,
       price: +price,
-      userId: new Types.ObjectId(user._id),
       userId: new Types.ObjectId(user._id),
     });
     console.log(newProfile);
