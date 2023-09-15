@@ -1,7 +1,6 @@
 import DashboardCard from "@/module/DashboardCard";
 import styles from "@/template/MyProfilesPage.module.css";
 function MyProfilesPage({ profiles }) {
-    console.log(profiles);
   return (
     <div>
       {profiles.length ? null : (

@@ -30,7 +30,7 @@ function SigninPage() {
     if (res.error) {
       toast.error(res.error);
     } else {
-      toast.success(res.message);
+      // toast.success(res.message);
       router.push("/");
     }
   };

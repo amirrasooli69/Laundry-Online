@@ -24,7 +24,7 @@ const changeHandler=(e,index)=>{
       <p>{title}</p>
       {profileData[type].map((i, index) => (
         <div className={styles.card} key={index}>
-          <input type="text" onChange={(e) =>changeHandler(e,index)}/>
+          <input type="text" value={i} onChange={(e) =>changeHandler(e,index)}/>
           <button onClick={() => deleteHandler(index)}>حذف <AiOutlineDelete/></button>
         </div>
       ))}
