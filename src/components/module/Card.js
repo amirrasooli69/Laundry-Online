@@ -7,7 +7,7 @@ import { HiOutlineLocationMarker } from "react-icons/hi";
 import { sp } from "@/utils/replaceNumber";
 import styles from "@/module/Card.module.css";
 
-function Card({ data: { title, location, price, category } }) {
+function Card({ data: { _id, title, location, price, category } }) {
   const icons = {
     villa: <RiHome3Line />,
     apartment: <MdApartment />,
@@ -23,7 +23,7 @@ function Card({ data: { title, location, price, category } }) {
         {location}
       </p>
       <span>{sp(price)} تومان</span>
-      <Link href="/">
+      <Link href={`/buy-residential/${_id}`}>
         مشاهده آگهی
         <BiLeftArrowAlt />
       </Link>
