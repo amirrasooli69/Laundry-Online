@@ -1,10 +1,9 @@
 import Link from "next/link";
 import styles from "@/module/Sidebar.module.css";
 import { HiFilter } from "react-icons/hi";
+import { categories } from "@/constants/strings";
 function Sidebar() {
-  const queries = [
-    { villa: "ویلا", apartment: "آپارتمان", store: "مغازه", office: "دفتر" },
-  ];
+
   return (
     <div className={styles.container}>
       <p>
@@ -12,15 +11,15 @@ function Sidebar() {
       </p>
       <Link href="/buy-residential">همه</Link>
 
-      {queries.map((query, index) => (
+      {Object.keys(categories).map((i, index) => (
         <p key={index}>
           <Link
             href={{
               pathname: "/buy-residential",
-              query: { category: Object.keys(query) },
+              query: { category: i },
             }}
           >
-            {Object.values(query)}
+            {categories[i]}
           </Link>
         </p>
       ))}

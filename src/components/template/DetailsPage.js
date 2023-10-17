@@ -1,42 +1,68 @@
+import { icons } from "@/constants/icons";
+import { categories } from "@/constants/strings";
 import ItemList from "@/module/ItemList";
+import ShareButton from "@/module/ShareButton";
 import Title from "@/module/Title";
 import styles from "@/template/DetailsPage.module.css";
-import { BiStore } from "react-icons/bi";
-import { GiOfficeChair } from "react-icons/gi";
+import { e2p, sp } from "@/utils/replaceNumber";
+import { AiOutlinePhone } from "react-icons/ai";
+import { BiCalendarCheck } from "react-icons/bi";
 import { HiOutlineLocationMarker } from "react-icons/hi";
-import { MdApartment } from "react-icons/md";
-import { RiHome3Line } from "react-icons/ri";
+import { SiHomebridge } from "react-icons/si";
 
-function DetailsPage({ data }) {
-  const categories = {
-    apartment: "آپارتمان",
-    villa: "ویلا",
-    store: "مغازه",
-    office: "دفتر",
-  };
-  const icons = {
-    villa: <RiHome3Line />,
-    apartment: <MdApartment />,
-    store: <BiStore />,
-    office: <GiOfficeChair />,
-  };
+function DetailsPage({
+  data: {
+    title,
+    location,
+    description,
+    amenities,
+    rules,
+    realState,
+    category,
+    phone,
+    price,
+    constructionDate,
+  },
+}) {
+
+
   return (
     <div className={styles.container}>
-
       <div className={styles.main}>
-        <h1>{data.title}</h1>
+        <h1>{title}</h1>
         <span>
           <HiOutlineLocationMarker />
-          {data.location}
+          {location}
         </span>
         <Title>توضیحات</Title>
-        <p>{data.description}</p>
+        <p>{description}</p>
         <Title>امکانات رفاهی</Title>
-        <ItemList data={data.amenities}/>
+        <ItemList data={amenities} />
         <Title>قوانین</Title>
-        <ItemList data={data.rules}/>
+        <ItemList data={rules} />
       </div>
-      <div className={styles.sidebar}></div>
+      <div className={styles.sidebar}>
+        <div className={styles.realState}>
+          <SiHomebridge />
+          <p>املاک {realState}</p>
+          <span>
+            <AiOutlinePhone />
+            {e2p(phone)}
+          </span>
+        </div>
+          <ShareButton />
+        <div className={styles.price}>
+          <p>
+            {icons[category]}
+            {categories[category]}
+          </p>
+          <p>{sp(price)} تومان</p>
+          <p>
+            <BiCalendarCheck />
+            {new Date(constructionDate).toLocaleDateString("fa-IR")}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
